@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = RouteTracker::VERSION
   s.authors     = ["Beetrack"]
   s.email       = ["tony@beetrack.com"]
-  s.homepage    = "http://beetrack.com"
+  s.homepage    = "https://github.com/agrass/route-tracker"
   s.summary     = "route-tracker is a gem for track your users routes access"
   s.description = "track which routes already visited your users"
   s.license     = "MIT"
