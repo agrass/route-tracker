@@ -12,7 +12,7 @@ Install Gem
 Configure
 --------------------
 ### create config yml
-You need to create a yml named route_tracker on config route (config/route_tracker.yml)
+You need to create a yml named route_tracker on config route (config/route_tracker.yml) and put the path name as key and the number is the identifier of that route starting from 1. (This represent the digit of the binary, this binary is used to sore a flag to then check if visited that method)
 ```yaml
   #config/route_tracker.yml
   #
@@ -25,7 +25,7 @@ You need to create a yml named route_tracker on config route (config/route_track
     '/get1': 4
 
 ```
- **you need to be careful with the key numbe (track_id) you use to identify the route, if you already selected one number for that route, you can't change it if you already used on production.**
+ **you need to be careful with the key number (track_id), used to identify the route. If you already selected one number for that route, you can't change it on production or you will get wrong data.**
 
 ### Create migration
 You need to create a new migration for your user model to add an integer to storage the respective route level, to check which route already visited. For example:
@@ -55,5 +55,12 @@ You need to remplace `current_user` with your own session of user in case that y
     end
   end
 ```
-
+### Check if user visited some route
+Remember to put the paths on config/route_tracker.yml with their respective track_id
+```ruby
+  #check if user visited index path
+  current_user.route_visited?('/index')
+  #check if user posted some form
+  current_user.route_visited?('/form1', 'POST')
+``
 This project uses MIT-LICENSE.
