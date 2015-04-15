@@ -1,6 +1,6 @@
 RouteTracker
 =====
-this gem allows you to track which routes already visited some user of your ruby on rails app. You need to specify which routes are trackable and then you can use the method `current_user.route_visited?('/resume', 'GET') to check if the user visited that route of your web app.
+this gem allows you to track which routes already visited some user of your ruby on rails app. You need to specify which routes are trackable and then you can use the method `current_user.route_visited?('/resume', 'GET')` to check if the user visited that route of your web app.
 
 Install Gem
 --------------------
