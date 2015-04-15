@@ -30,7 +30,7 @@ You need to create a new migration for your user model to add an integer to stor
 ```ruby
   $ rails g migration add_level_to_users level:integer
 ```
-### Add route_trackeable to yout model 
+### Add route_trackeable
 With this the model user will have the methods of route_trackeable
 
 ```
