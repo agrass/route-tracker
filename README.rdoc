@@ -1,6 +1,5 @@
 = RouteTracker
-1. Install Gem
---------------------
+### Install Gem
 Add on your gemfile
 ```
 route_tracker
