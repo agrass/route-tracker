@@ -25,6 +25,8 @@ You need to create a yml named route_tracker on config route (config/route_track
     '/get1': 4
 
 ```
+ **you need to be careful with the key numbe (track_id) you use to identify the route, if you already selected one number for that route, you can't change it if you already used on production.**
+
 ### Create migration
 You need to create a new migration for your user model to add an integer to storage the respective route level, to check which route already visited. For example:
 ```ruby
@@ -41,10 +43,12 @@ With this the model user will have the methods of route_trackeable
 ```
 ### Add route checker on application controller
 You need to remplace `current_user` with your own session of user in case that you are not using devise.
-```
+```ruby
   # app/controllers/application_controller.rb 
   class ApplicationController < ActionController::Base
+  
     before_filter :track_user_route
+    
     def track_user_route
       reutrn if current_user.blank?
       current_user.check_route_level(request)
