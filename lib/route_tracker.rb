@@ -1,6 +1,6 @@
 module RouteTracker
   module RouteTrackeable
-    LEVEL_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/route_tracker.yml")
+    LEVEL_CONFIG = YAML.load_file("#{Rails.root}/config/route_tracker.yml")
     extend ActiveSupport::Concern
  
     included do
