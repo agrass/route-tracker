@@ -1,5 +1,6 @@
 module RouteTracker
   module RouteTrackeable
+    LEVEL_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/route_tracker.yml")
     extend ActiveSupport::Concern
  
     included do
@@ -7,8 +8,8 @@ module RouteTracker
  
     module ClassMethods
       def route_trackeable(options = {})
-        cattr_accessor :level
-        self.level = (options[:level] || "level").to_s
+        cattr_accessor :track_level
+        self.track_level = (options[:track_level] || "level").to_s
  
         include RouteTracker::RouteTrackeable::LocalInstanceMethods
       end
