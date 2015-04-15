@@ -26,6 +26,7 @@ module RouteTracker
         return if current_level.nil?
         new_level = current_level | binary_level
         write_attribute(self.class.track_level, new_level)
+        self.save
       end
       def route_visited?(route, method = "GET" )
         current_level = self[self.class.track_level] rescue 0
