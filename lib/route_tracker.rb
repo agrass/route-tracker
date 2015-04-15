@@ -21,7 +21,7 @@ module RouteTracker
         return if binary_level.blank?
         binary_level = 2**binary_level
         p binary_level
-        return if already visited
+        #return if already visited
         return if self.route_visited?(request.method, request.path)
         current_level = self[self.class.track_level]
         new_level = current_level | binary_level
