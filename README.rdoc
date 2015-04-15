@@ -1,3 +1,11 @@
 = RouteTracker
+1. Install Gem
+--------------------
+Add on your gemfile
+```
+route_tracker
+```
+
+
 
 This project rocks and uses MIT-LICENSE.
