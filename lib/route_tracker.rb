@@ -22,14 +22,14 @@ module RouteTracker
         binary_level = 2**binary_level
         p binary_level
         #return if already visited
-        return if self.route_visited?(request.method, request.path)
+        return if self.route_visited?(request.path, request.method)
         current_level = self[self.class.track_level]
         new_level = current_level | binary_level
         write_attribute(self.class.track_level, new_level)
       end
       def route_visited?(route, method = "GET" )
         current_level = self[self.class.track_level]
-        binary_level = LEVEL_CONFIG[method][route]
+        binary_level = LEVEL_CONFIG[method][route] rescue nil
         return false if binary_level.blank?
         #binary level is already activated
         return true if 2**binary_level & current_level > 0
