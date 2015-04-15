@@ -16,9 +16,24 @@ module RouteTracker
     end
  
     module LocalInstanceMethods
-      def check_level(request)
-        #write_attribute(self.class.level, request)
-        p request
+      def check_route_level(request)
+        binary_level = LEVEL_CONFIG[request.method][request.path] rescue nil
+        return if binary_level.blank?
+        binary_level = 2**binary_level
+        p binary_level
+        return if already visited
+        return if self.route_visited?(request.method, request.path)
+        current_level = self[self.class.track_level]
+        new_level = current_level | binary_level
+        write_attribute(self.class.track_level, new_level)
+      end
+      def route_visited?(route, method = "GET" )
+        current_level = self[self.class.track_level]
+        binary_level = LEVEL_CONFIG[method][route]
+        return false if binary_level.blank?
+        #binary level is already activated
+        return true if 2**binary_level & current_level > 0
+        return false
       end
     end
   end
