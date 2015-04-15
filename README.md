@@ -4,8 +4,9 @@ this gem allows you to track which routes already visited some user of your ruby
 
 Install Gem
 --------------------
-### Add on your gemfile
+### Add on your Gemfile
 ```
+  #Gemfile
   gem "route_tracker"
 ```
 Configure
@@ -24,21 +25,31 @@ You need to create a yml named route_tracker on config route (config/route_track
     '/get1': 4
 
 ```
-### Create a new attribute to store the user track level
-You need to add a migration to create an integer in your user model. For example:
+### Create migration
+You need to create a new migration for your user model to add an integer to storage the respective route level, to check which route already visited. For example:
 ```ruby
-  rails g migration add_level_to_users level:integer
+  $ rails g migration add_level_to_users level:integer
 ```
-### Add route_trackeable to model (example: app/model/user.rb)
+### Add route_trackeable to yout model 
 With this the model user will have the methods of route_trackeable
 
 ```
+  # app/models/user.rb
   class User < ActiveRecord::Base
     route_trackeable track_level: :level
   end
 ```
+### Add route checker on application controller
+You need to remplace `current_user` with your own session of user in case that you are not using devise.
+```
+  # app/controllers/application_controller.rb 
+  class ApplicationController < ActionController::Base
+    before_filter :track_user_route
+    def track_user_route
+      reutrn if current_user.blank?
+      current_user.check_route_level(request)
+    end
+  end
+```
 
-
-
-
-This project rocks and uses MIT-LICENSE.
+This project uses MIT-LICENSE.
