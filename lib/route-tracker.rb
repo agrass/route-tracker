@@ -16,7 +16,8 @@ module RouteTracker
  
     module LocalInstanceMethods
       def check_level(request)
-        write_attribute(self.class.level, request)
+        #write_attribute(self.class.level, request)
+        p request
       end
     end
   end
