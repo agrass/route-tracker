@@ -6,7 +6,7 @@
 ```
 = Config 
 * create config yml
-```
+```yaml
   POST:
 
   GET:
@@ -15,7 +15,7 @@
 ```
 * Create a new attribute to store the user track level
 You need to add a migration to create an integer in your user model. For example:
-```
+```ruby
   rails g migration add_level_to_users level:integer
 ```
 * Add route_trackeable to model (example: app/model/user.rb)
