@@ -28,7 +28,7 @@ You need to create a yml named route_tracker on config route (config/route_track
  **you need to be careful with the key number (track_id), used to identify the route. If you already selected one number for that route, you can't change it on production or you will get wrong data.**
 
 ### Create migration
-You need to create a new migration for your user model to add an integer to storage the respective route level, to check which route already visited. For example:
+You need to create a new migration for your user model to add an integer to storage the respective route level, to check which route already visited. (This integer is used to store as binary which route the user already visited) For example:
 ```ruby
   $ rails g migration add_level_to_users level:integer
 ```
