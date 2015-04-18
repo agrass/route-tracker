@@ -62,5 +62,5 @@ Remember to put the paths on config/route_tracker.yml with their respective trac
   current_user.route_visited?('/index')
   #check if user posted some form
   current_user.route_visited?('/form1', 'POST')
-``
+```
 This project uses MIT-LICENSE.
