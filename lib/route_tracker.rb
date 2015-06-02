@@ -36,6 +36,7 @@ module RouteTracker
         return false
       end
       def activate_flag(num)
+        return unless (Integer(num) rescue -1) >= 0
         current_level = self[self.class.track_level]
         new_level = current_level | num
         update_attribute(self.class.track_level, new_level)
