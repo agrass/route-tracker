@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    route_tracker (0.0.9)
+    route_tracker (0.1.0.0)
       rails (~> 4)
 
 GEM
