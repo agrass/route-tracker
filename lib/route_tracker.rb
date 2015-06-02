@@ -35,7 +35,7 @@ module RouteTracker
         return true if 2**binary_level & current_level > 0
         return false
       end
-      def activate_flag(num)
+      def activate_route_binary(num)
         return unless (Integer(num) rescue -1) >= 0
         current_level = self[self.class.track_level]
         new_level = current_level | num
