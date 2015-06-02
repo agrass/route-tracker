@@ -2,19 +2,19 @@ module RouteTracker
   module RouteTrackeable
     LEVEL_CONFIG = YAML.load_file("config/route_tracker.yml")
     extend ActiveSupport::Concern
- 
+
     included do
     end
- 
+
     module ClassMethods
       def route_trackeable(options = {})
         cattr_accessor :track_level
         self.track_level = (options[:track_level] || "level").to_s
- 
+
         include RouteTracker::RouteTrackeable::LocalInstanceMethods
       end
     end
- 
+
     module LocalInstanceMethods
       def check_route_level(request)
         binary_level = LEVEL_CONFIG[request.method][request.path] rescue nil
@@ -35,8 +35,13 @@ module RouteTracker
         return true if 2**binary_level & current_level > 0
         return false
       end
+      def activate_flag(num)
+        current_level = self[self.class.track_level]
+        new_level = current_level | num
+        update_attribute(self.class.track_level, new_level)
+      end
     end
   end
 end
- 
+
 ActiveRecord::Base.send :include, RouteTracker::RouteTrackeable
