@@ -37,6 +37,7 @@ module RouteTracker
       end
       def activate_route_binary(num)
         return unless (Integer(num) rescue -1) >= 0
+        num = Integer(num)
         current_level = self[self.class.track_level]
         new_level = current_level | num
         update_attribute(self.class.track_level, new_level)
